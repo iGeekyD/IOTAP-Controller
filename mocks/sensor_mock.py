@@ -1,7 +1,7 @@
 from random import random
 
 def generate_temperature():
-    print ("Hello from temperature")
+    return random()*14 + 16
 
 def generate_humidity():
     pass
