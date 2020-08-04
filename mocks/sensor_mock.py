@@ -1,10 +1,10 @@
-from random import random
+from random import random, choice
 
 def generate_temperature():
     return random()*14 + 16
 
 def generate_humidity():
-    pass
+    return random()*70 + 30
 
 def generate_movement():
-    pass
+    choice(["ON", "OFF"])

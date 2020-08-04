@@ -1,0 +1,15 @@
+sensors:
+  - name: "Temperature"
+    id: 0001
+    port: "generate_temperature"
+    value: "double"
+  - name: "Humidity"
+    id: 0002
+    port: "generate_humidity"
+    value: "double"
+  - name: "Movement"
+    id: 0003
+    port: "generate_movement"
+    value:
+      - "ON"
+      - "OFF"

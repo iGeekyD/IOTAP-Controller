@@ -1,22 +1,32 @@
-from mocks.sensor_mock import generate_temperature
+import mocks.sensor_mock as sensor_mock
+import yaml
 
 import paho.mqtt.client as mqtt
+from controller import Controller
 
 def run_controller(sensor):
-    create_thread()
-    Controller.run()
+    callback = getattr(sensor_mock, sensor["port"])
+    callback()
+    controller = Controller(name=sensor['name'])
+    controller.start()
 
 if __name__ == "__main__":
-    read_config()
+    with open("controllers.conf.yml") as conf: #TODO Check exception throwing
+        config = yaml.full_load(conf)
+    if config is None:
+        print("controllers.conf.yml is not found")
 
-    foreach sensor in sensors:
-    run_controller(sensor)
+    #TODO Validate conf file
 
-    broker_address = "127.0.0.1"
+    [run_controller(sensor) for sensor in config['sensors']]
 
-    client = mqtt.Client("P1")  # create new instance
-    client.connect(broker_address)  # connect to broker
-    client.publish("house/main-light", "OFF")  # publish
-    client.disconnect()
+
+
+    # broker_address = "127.0.0.1"
+
+    # client = mqtt.Client("P1")  # create new instance
+    # client.connect(broker_address)  # connect to broker
+    # client.publish("house/main-light", "OFF")  # publish
+    # client.disconnect()
 
 
