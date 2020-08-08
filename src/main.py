@@ -1,7 +1,10 @@
-import mocks.sensor_mock as sensor_mock
 import yaml
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from mocks import sensor_mock
 
-from src.controller import Controller
+from controller import Controller
 
 def run_controller(sensor):
     callback = getattr(sensor_mock, sensor["port"])
@@ -10,10 +13,11 @@ def run_controller(sensor):
     controller.start()
 
 if __name__ == "__main__":
-    with open("controllers.conf.yml") as conf: #TODO Check exception throwing
+    print ("Controller is started")
+    with open("configs/controller.conf.yml") as conf: #TODO Check exception throwing
         config = yaml.full_load(conf)
     if config is None:
-        print("controllers.conf.yml is not found")
+        print("controller.conf.yml is not found")
 
     #TODO Validate conf file
 
