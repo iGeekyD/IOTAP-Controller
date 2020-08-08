@@ -1,8 +1,7 @@
 import mocks.sensor_mock as sensor_mock
 import yaml
 
-import paho.mqtt.client as mqtt
-from controller import Controller
+from src.controller import Controller
 
 def run_controller(sensor):
     callback = getattr(sensor_mock, sensor["port"])
