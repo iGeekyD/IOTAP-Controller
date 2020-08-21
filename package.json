@@ -1,0 +1,13 @@
+{
+  "name": "iotap-controller",
+  "version": "1.0.0",
+  "description": "Controller for reading data from sensors",
+  "author": "Dmitry Filin <dmitry.filin@yahoo.com>",
+  "main": "entrypoint.js",
+  "scripts": {
+    "start": "node entrypoint.js"
+  },
+  "dependencies": {
+    "js-yaml": "latest"
+  }
+}
